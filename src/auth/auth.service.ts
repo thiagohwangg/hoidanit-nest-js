@@ -1,4 +1,4 @@
-import { CreateAuthDto } from '@/auth/dto/create-auth.dto';
+import { CodeAuthDto, CreateAuthDto } from '@/auth/dto/create-auth.dto';
 import { comparePasswordHelper } from '@/helper/util';
 import { UsersService } from '@/modules/users/users.service';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -34,5 +34,9 @@ export class AuthService {
 
   async handleRegister(registerDto: CreateAuthDto) {
     return this.usersService.handleRegister(registerDto)
+  }
+
+  async checkCode(data: CodeAuthDto) {
+    return this.usersService.handleActive(data)
   }
 }
